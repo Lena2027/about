@@ -1,84 +1,77 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모듈화된 HTML 데모</title>
+    <title>Holiday Calendar & Inquiry</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!-- 동적으로 로드될 헤더 -->
     <div id="header-container"></div>
 
     <main>
-        <h1>메인 콘텐츠 영역</h1>
-        <p>이곳은 메인 페이지의 내용이 들어가는 부분입니다. 헤더와 푸터는 각각 별도의 파일에서 불러와 표시됩니다.</p>
-
-        <section id="affiliate-form">
-            <h2>제휴 문의</h2>
-            <form action="https://formspree.io/f/xgoljwgl" method="POST">
-                <div class="form-group">
-                    <label for="name">이름/업체명</label>
-                    <input type="text" id="name" name="name" required placeholder="이름 또는 업체명을 입력하세요.">
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일 주소</label>
-                    <input type="email" id="email" name="_replyto" required placeholder="example@domain.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">문의 내용</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="제휴 관련 내용을 상세히 적어주세요."></textarea>
-                </div>
-                <!-- 폼 제출 후 이동할 페이지 (선택사항) -->
-                <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html"> -->
-                <button type="submit">문의하기</button>
-            </form>
+        <section id="hero">
+            <h1>Minimal Calendar & Contact</h1>
+            <p>A simple way to check German holidays and get in touch.</p>
         </section>
 
         <section id="calendar-section">
-            <h2>2026년 독일 휴일 달력</h2>
+            <h2>German Holidays 2026</h2>
             <div id="calendar-controls">
                 <div class="state-selector">
-                    <label for="stateSelect">지역 선택:</label>
+                    <label for="stateSelect">Region:</label>
                     <select id="stateSelect">
-                        <option value="ALL" selected>전체 공휴일</option>
-                        <option value="BW">Baden-Württemberg (바덴뷔르템베르크)</option>
-                        <option value="BY">Bayern (바이에른)</option>
-                        <option value="BE">Berlin (베를린)</option>
-                        <option value="BB">Brandenburg (브란덴부르크)</option>
-                        <option value="HB">Bremen (브레멘)</option>
-                        <option value="HH">Hamburg (함부르크)</option>
-                        <option value="HE">Hessen (헤센)</option>
-                        <option value="MV">Mecklenburg-Vorpommern (메클렌부르크포어포메른)</option>
-                        <option value="NI">Niedersachsen (니더작센)</option>
-                        <option value="NW">Nordrhein-Westfalen (노르트라인베스트팔렌)</option>
-                        <option value="RP">Rheinland-Pfalz (라인란트팔츠)</option>
-                        <option value="SL">Saarland (자를란트)</option>
-                        <option value="SN">Sachsen (작센)</option>
-                        <option value="ST">Sachsen-Anhalt (작센안할트)</option>
-                        <option value="SH">Schleswig-Holstein (슐레스비히홀슈타인)</option>
-                        <option value="TH">Thüringen (튀링겐)</option>
+                        <option value="ALL" selected>All Germany</option>
+                        <option value="BW">Baden-Württemberg</option>
+                        <option value="BY">Bayern</option>
+                        <option value="BE">Berlin</option>
+                        <option value="BB">Brandenburg</option>
+                        <option value="HB">Bremen</option>
+                        <option value="HH">Hamburg</option>
+                        <option value="HE">Hessen</option>
+                        <option value="MV">Mecklenburg-Vorpommern</option>
+                        <option value="NI">Niedersachsen</option>
+                        <option value="NW">Nordrhein-Westfalen</option>
+                        <option value="RP">Rheinland-Pfalz</option>
+                        <option value="SL">Saarland</option>
+                        <option value="SN">Sachsen</option>
+                        <option value="ST">Sachsen-Anhalt</option>
+                        <option value="SH">Schleswig-Holstein</option>
+                        <option value="TH">Thüringen</option>
                     </select>
                 </div>
                 <div class="month-nav">
-                    <button id="prevMonth">&lt; 이전 달</button>
+                    <button id="prevMonth">Prev</button>
                     <span id="currentMonthDisplay"></span>
-                    <button id="nextMonth">다음 달 &gt;</button>
+                    <button id="nextMonth">Next</button>
                 </div>
             </div>
-            <div id="calendar-grid" class="calendar-grid">
-                <!-- JS에서 달력이 동적으로 생성됩니다 -->
-            </div>
+            <div id="calendar-grid" class="calendar-grid"></div>
             <div id="holiday-list">
-                <h3>이달의 공휴일</h3>
+                <h3>Holidays this month</h3>
                 <ul id="holidays"></ul>
             </div>
         </section>
+
+        <section id="affiliate-form">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/xgoljwgl" method="POST">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required placeholder="Name or Company">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="_replyto" required placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="4" required placeholder="How can we help?"></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
     </main>
 
-    <!-- 동적으로 로드될 푸터 -->
     <div id="footer-container"></div>
 
     <script src="js/main.js"></script>

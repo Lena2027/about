@@ -4,12 +4,40 @@ async function loadComponent(url, elementId) {
         if (!response.ok) throw new Error(`Failed to load ${url}`);
         const html = await response.text();
         document.getElementById(elementId).innerHTML = html;
+        
+        // Header가 로드된 후 테마 토글 이벤트 연결
+        if (elementId === 'header-container') {
+            setupThemeToggle();
+        }
     } catch (error) {
         console.error('Error loading component:', error);
     }
 }
 
+function setupThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn) return;
+
+    // 저장된 테마 적용
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    toggleBtn.textContent = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        toggleBtn.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 테마 즉시 적용 (깜빡임 방지)
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
     loadComponent('components/header.html', 'header-container');
     loadComponent('components/footer.html', 'footer-container');
     initCalendar();
@@ -74,6 +102,8 @@ function renderCalendar(year, month) {
     const grid = document.getElementById('calendar-grid');
     const monthDisplay = document.getElementById('currentMonthDisplay');
     const holidayListUl = document.getElementById('holidays');
+    
+    if(!grid || !monthDisplay || !holidayListUl) return;
     
     grid.innerHTML = '';
     holidayListUl.innerHTML = '';

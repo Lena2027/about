@@ -4,6 +4,18 @@
     --bg: #ffffff;
     --gray: #f9f9f9;
     --border: #eeeeee;
+    --holiday-bg: #fff5f5;
+    --text: #222;
+}
+
+[data-theme="dark"] {
+    --primary: #f0f0f0;
+    --accent: #aaa;
+    --bg: #121212;
+    --gray: #1e1e1e;
+    --border: #333333;
+    --holiday-bg: #2d1a1a;
+    --text: #e0e0e0;
 }
 
 * {
@@ -14,9 +26,10 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: var(--primary);
+    color: var(--text);
     background-color: var(--bg);
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 main {
@@ -33,20 +46,24 @@ h1, h2, h3 {
     font-weight: 600;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+    color: var(--primary);
 }
 
 /* Header & Footer */
 .main-header {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bg);
 }
 
 .main-header nav ul {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
 }
 
 .main-header a {
@@ -59,14 +76,18 @@ h1, h2, h3 {
     text-align: center;
     border-top: 1px solid var(--border);
     font-size: 0.9rem;
-    color: #999;
+    color: #888;
 }
 
-.social-links {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+/* Theme Toggle Button */
+#theme-toggle {
+    background: var(--gray);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 /* Calendar */
@@ -80,7 +101,8 @@ h1, h2, h3 {
 select, button {
     padding: 0.5rem 1rem;
     border: 1px solid var(--border);
-    background: white;
+    background: var(--bg);
+    color: var(--text);
     font-family: inherit;
     cursor: pointer;
     border-radius: 4px;
@@ -110,21 +132,17 @@ select, button {
 }
 
 /* Simple Week Colors */
-.week-0 { background-color: #fff; }
-.week-1 { background-color: #fafafa; }
-.week-2 { background-color: #fff; }
-.week-3 { background-color: #fafafa; }
-.week-4 { background-color: #fff; }
-.week-5 { background-color: #fafafa; }
+.week-0, .week-2, .week-4 { background-color: var(--bg); }
+.week-1, .week-3, .week-5 { background-color: var(--gray); }
 
 .holiday-cell {
-    background-color: #fff5f5 !important;
+    background-color: var(--holiday-bg) !important;
 }
 
 .holiday-name {
     display: block;
     font-size: 0.7rem;
-    color: #cc0000;
+    color: #ff4d4d;
     margin-top: 4px;
 }
 
@@ -142,14 +160,20 @@ input, textarea {
     padding: 1rem;
     border: 1px solid var(--border);
     background: var(--gray);
+    color: var(--text);
     font-family: inherit;
     border-radius: 4px;
 }
 
+input::placeholder, textarea::placeholder {
+    color: #888;
+}
+
 button[type="submit"] {
     background: var(--primary);
-    color: white;
+    color: var(--bg);
     border: none;
     padding: 1rem 2rem;
     width: 100%;
+    font-weight: bold;
 }

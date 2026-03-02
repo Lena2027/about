@@ -177,3 +177,46 @@ button[type="submit"] {
     width: 100%;
     font-weight: bold;
 }
+
+/* Blog Styles */
+.blog-card {
+    background: var(--gray);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card h3 a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.blog-post h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.blog-post .intro {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 3rem;
+}
+
+.blog-post section {
+    margin-bottom: 3rem;
+}
+
+.blog-post h2 {
+    margin-bottom: 1rem;
+}
+
+.blog-post .faq {
+    background: var(--gray);
+    padding: 2rem;
+    border-radius: 8px;
+}
